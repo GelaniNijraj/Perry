@@ -1,0 +1,17 @@
+RewriteEngine On
+
+Options +FollowSymLinks
+DirectoryIndex index.html index.htm default.htm index.php index.php3 index.phtml index.php5 index.shtml mwindex.phtml
+#RewriteRule ^(.*)$ router.php [NC,L]
+#ErrorDocument 404 /router.php
+
+#RewriteCond %{REQUEST_FILENAME} !-s
+#RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+
+#RewriteRule    ^dashboard/([0-9a-zA-Z]+)/$    dashboard/blog.php?blog=$1
+#RewriteRule    ^dashboard/([0-9a-zA-Z]+)/([0-9a-zA-Z\._]+)$    dashboard/$2?blog=$1
+#RewriteRule    ^([0-9a-zA-Z\-]+)/$    blogs/$1/index.php [R,L]
+#RewriteRule    ^([0-9a-zA-Z._\\/]+)/page/([0-9]+)$    $1?page=$2
+#RewriteRule ^/Blog/dashboard/([^/]*)\.html$ /Blog/dashboard/index.php?blog=$1 [R,L]
