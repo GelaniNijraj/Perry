@@ -21,7 +21,12 @@
         }
     ?>
     <div id="wrapper">
-        <h1><?=$edit?"Edit category":"New category"?></h1>
+        <div class="row">
+            <div class="col-6-12"><h1><?=$edit?"Edit category":"New category"?></h1></div>
+            <div class="col-6-12" style="text-align: right">
+                <input type="button" class="red" value="Delete Category" onclick="window.location = 'categories/add';">
+            </div>
+        </div>
         <form method="post" id="addPostForm">
             <div class="row">
                 <div class="col-6-12">

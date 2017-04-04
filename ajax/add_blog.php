@@ -9,6 +9,24 @@ require ("../includes/common.php");
 
 use Respect\Validation\Validator as v;
 
+function recurse_copy($src, $dst) {
+    $dir = opendir($src);
+    $oldumask = umask(0);
+    mkdir($dst, 0777);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    umask($oldumask);
+    closedir($dir);
+}
+
 if(isset($_POST['title']) && isset($_POST['description'])){
     $validator = v::length(1, 255);
     $title = $_POST['title'];
@@ -36,8 +54,8 @@ if(isset($_POST['title']) && isset($_POST['description'])){
                     $post->title = "Hello, World!";
                     $post->slug = "hello-world";
                     $post->content = "Perry's default template uses the Github flavoured markdown. Here's a quick cheatsheet of it.
-
-# Headings
+                    
+#### Headings
 
     # Heading 1
     ## Heading 2
@@ -46,7 +64,7 @@ if(isset($_POST['title']) && isset($_POST['description'])){
     ##### Heading 5
     ###### Heading 6
 
-# Lists
+#### Lists
 
     * Item 1
     * Item 2
@@ -56,11 +74,11 @@ if(isset($_POST['title']) && isset($_POST['description'])){
     2. Item 2
     3. Item 3
 
-# Links
+#### Links
 
 `[This is a link](http://your-website.com)`
 
-# Tables
+#### Tables
     |         Col 1       |         Col 2       |
     |---------------------|---------------------|
     |  data here          |   data here         |";
@@ -68,7 +86,8 @@ if(isset($_POST['title']) && isset($_POST['description'])){
                     $post->category = $category->id;
                     $post->published_on = \Carbon\Carbon::now();
                     if($post->save()){
-                        echo "<script>window.location = '/dashboard/" . $blog->url . "/';</script>";
+                        recurse_copy(ROOT . "/themes/default", ROOT . "/blogs/" . $blog->url);
+//                        echo "<script>window.location = '/dashboard/" . $blog->url . "/';</script>";
                     }else{
                         echo "Something went wrong...";
                     }

@@ -68,11 +68,11 @@
                     }
                     foreach ($posts as $p){
                 ?>
-                <div class="post">
-                    <h2><?=$p->title?></h2>
-                    <a href="/dashboard/<?=Blog::getCurrentBlog()->url?>/posts/edit/<?=$p->id?>">Edit</a> |
-                    <a href="#">Delete</a>
-                </div>
+                <a href="/dashboard/<?=Blog::getCurrentBlog()->url?>/posts/edit/<?=$p->id?>" style="text-decoration: none;">
+                    <div class="post">
+                        <h2><?=$p->title?></h2>
+                    </div>
+                </a>
                 <?php } ?>
                 <ul class="paging">
                     <?php

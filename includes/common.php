@@ -17,6 +17,7 @@ require (ROOT . "/objects/Blog.php");
 require (ROOT . "/objects/Category.php");
 require (ROOT . "/objects/Post.php");
 require (ROOT . "/objects/Comment.php");
+require (ROOT . "/objects/Theme.php");
 
 
 $capsule = new Illuminate\Database\Capsule\Manager;

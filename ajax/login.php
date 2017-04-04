@@ -11,7 +11,7 @@ $id = User::verifyLogin($_POST['username'], $_POST['password']);
 
 if($id != NULL){
     $_SESSION['id'] = $id;
-    echo "<script>window.location = '/dash';</script>";
+    echo "<script>window.location = '/dashboard/';</script>";
 }else{
     echo "Username/Password wrong";
 }

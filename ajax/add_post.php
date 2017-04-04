@@ -7,6 +7,7 @@
 
 require ("../includes/common.php");
 
+
 if(isset($_POST['title']) && isset($_POST['content'])){
     if(strlen($_POST['title']) > 0 && strlen($_POST['content']) > 0){
         if(isset($_POST['edit'])) {

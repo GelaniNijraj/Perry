@@ -21,12 +21,18 @@
     }
     ?>
     <div id="wrapper">
-        <h1><?=$edit?"Edit post":"New post"?></h1>
+        <div class="row">
+            <div class="col-6-12"><h1><?=$edit?"Edit post":"New post"?></h1></div>
+            <div class="col-6-12" style="text-align: right">
+                <input type="button" class="red" value="Delete Post" onclick="window.location.href = '/dashboard/<?=Blog::getCurrentBlog()->url?>/posts/add';">
+            </div>
+        </div>
+
         <form method="post" id="addPostForm">
             <div class="row">
                 <div class="col-12-12">
                     <input type="hidden" name="edit" value="<?=$_GET['edit']?>">
-                    <input type="text" name="title" placeholder="Post Title" value="<?=$post->title?>" />
+                    <input type="text" name="title" placeholder="Post Title" value="<?=$post->title?>" style="font-size: 25px;" />
                     <div class="row">
                         <div class="col-4-12">
                             <span class="error"><?php echo ROOT_URL . "/" . Blog::getCurrentBlog()->url . "/post/"; ?></span>
@@ -50,6 +56,11 @@
                             ?>
                         </select>
                     </label>
+                    <div class="row" style="margin-top: 20px;">
+                        <label>Select a cover image :
+                            <input type="file" />
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="row">

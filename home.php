@@ -1,6 +1,6 @@
 <?php
     if (isset($_SESSION['id']))
-        header("Location: /dashboard/index.php");
+        header("Location: /dashboard/");
 ?>
 <!DOCTYPE html>
 <html lang="en">

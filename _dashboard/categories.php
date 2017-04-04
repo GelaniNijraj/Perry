@@ -19,11 +19,6 @@
         .category:hover{
             background: #cdcdcd;
         }
-
-        .post-count, .delete{
-            color: rgba(0, 0, 0, 0.6);
-        }
-
     </style>
 </head>
 <body>
@@ -43,14 +38,12 @@
             foreach ($categories as $c){
         ?>
             <div class="col-3-12">
-                <div class="category">
-                    <h3><?=$c->name?></h3>
-                    <p class="post-count"><?=$c->getPostsCount()?> Posts</p>
-                    <p style="margin-top: 10px;">
-                        <a href="categories/edit/<?=$c->id?>" class="delete">Edit</a> |
-                        <a href="#" class="delete">Delete</a>
-                    </p>
-                </div>
+                <a href="categories/edit/<?=$c->id?>" class="delete" style="text-decoration: none">
+                    <div class="category">
+                        <h3><?=$c->name?></h3>
+                        <p class="post-count"><?=$c->getPostsCount()?> Posts</p>
+                    </div>
+                </a>
             </div>
         <?php $i++; } ?>
     </div>

@@ -18,6 +18,11 @@ $router->map("GET", "/dashboard/[*:blog]/", function ($blog){
     require "_dashboard/blog.php";
 });
 
+$router->map("GET", "/dashboard/account", function (){
+    require "_dashboard/account.php";
+});
+
+
 $router->map("GET", "/dashboard/add-blog", function (){
     require "_dashboard/add_blog.php";
 });
@@ -25,6 +30,11 @@ $router->map("GET", "/dashboard/add-blog", function (){
 $router->map("GET", "/dashboard/[*:blog]/posts", function ($blog){
     $_GET['blog'] = $blog;
     require "_dashboard/posts.php";
+});
+
+$router->map("GET", "/dashboard/[*:blog]/delete", function ($blog){
+    $_GET['blog'] = $blog;
+    require "ajax/delete_blog.php";
 });
 
 $router->map("GET", "/dashboard/[*:blog]/posts/page/[i:page]", function ($blog, $page){

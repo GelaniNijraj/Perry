@@ -18,8 +18,13 @@ $perry_blog = Blog::get("url", $_GET['blog']);
 
 if(!isset($_GET['post']))
     $perry_posts = $perry_blog->getPosts(null, $page, $perry_blog->posts_per_page);
-else
-    $perry_post = Post::get("slug", $_GET['post']);
+else{
+    $perry_post = new Post();
+    $perry_post->load(Illuminate\Database\Capsule\Manager::table("post")->where([
+        ["slug", "=", $_GET['post']],
+        ["blog", "=", $perry_blog->id]
+    ])->first());
+}
 
 function get_url($file){
     return ROOT_URL . "/blogs/" . blog_url() . "/" . $file;
@@ -53,4 +58,8 @@ function get_total_pages($blog){
 
 function get_current_page(){
     return $_GET['page'] ?? 1;
+}
+
+function to_ago($time){
+    return \Carbon\Carbon::parse($time)->diffForHumans();
 }

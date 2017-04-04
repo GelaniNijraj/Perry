@@ -20,6 +20,8 @@
 <script src="<?=ROOT_URL?>/scripts/jquery.js"></script>
 <script src="<?=ROOT_URL?>/scripts/jquery-ui.js"></script>
 <script src="<?=ROOT_URL?>/scripts/jquery.form.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
 <!--<script src="--><?//=ROOT_URL?><!--/scripts/navigo.min.js"></script>-->
 
 <script>
