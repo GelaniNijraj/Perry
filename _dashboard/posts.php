@@ -7,19 +7,12 @@
     <style>
         .post{
             /*height: 70px;*/
-            background: #F3F3F3;
             padding: 10px;
-            transition: 0.1s;
             margin-bottom: 5px;
         }
         .post > h2{
             margin-top: 0;
         }
-
-        .post:hover{
-            background: rgba(0, 0, 0, 0.2);
-        }
-
         .menu{
             list-style: none;
         }
@@ -53,14 +46,14 @@
         </div>
 
         <div class="row">
-            <div class="col-3-12">
-                <ul class="menu">
-                    <li><a href="?all" class="active">All</a></li>
-                    <li><a href="?published">Published</a></li>
-                    <li><a href="?drafts">Drafts</a></li>
-                </ul>
-            </div>
-            <div class="col-9-12">
+<!--            <div class="col-3-12">-->
+<!--                <ul class="menu">-->
+<!--                    <li><a href="?all" class="active">All</a></li>-->
+<!--                    <li><a href="?published">Published</a></li>-->
+<!--                    <li><a href="?drafts">Drafts</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+            <div class="col-12-12">
                 <?php
                     $posts = Blog::getCurrentBlog()->getPosts(null, $_GET['page'] ?? 1);
                     if(count($posts) == 0){
@@ -69,7 +62,7 @@
                     foreach ($posts as $p){
                 ?>
                 <a href="/dashboard/<?=Blog::getCurrentBlog()->url?>/posts/edit/<?=$p->id?>" style="text-decoration: none;">
-                    <div class="post">
+                    <div class="post hover">
                         <h2><?=$p->title?></h2>
                     </div>
                 </a>

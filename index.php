@@ -34,13 +34,21 @@ $router->map("GET", "/dashboard/[*:blog]/posts", function ($blog){
 
 $router->map("GET", "/dashboard/[*:blog]/delete", function ($blog){
     $_GET['blog'] = $blog;
-    require "ajax/delete_blog.php";
+    require "_dashboard/delete_blog.php";
 });
+
 
 $router->map("GET", "/dashboard/[*:blog]/posts/page/[i:page]", function ($blog, $page){
     $_GET['blog'] = $blog;
     $_GET['page'] = $page;
     require "_dashboard/posts.php";
+});
+
+
+$router->map("GET", "/dashboard/[*:blog]/posts/delete/[i:post]", function ($blog, $post){
+    $_GET['blog'] = $blog;
+    $_GET['post'] = $post;
+    require "_dashboard/delete_post.php";
 });
 
 $router->map("GET", "/dashboard/[*:blog]/posts/add", function ($blog){
@@ -62,6 +70,13 @@ $router->map("GET", "/dashboard/[*:blog]/categories", function ($blog){
 $router->map("GET", "/dashboard/[*:blog]/categories/add", function ($blog){
     $_GET['blog'] = $blog;
     require "_dashboard/add_category.php";
+});
+
+
+$router->map("GET", "/dashboard/[*:blog]/categories/delete/[i:post]", function ($blog, $category){
+    $_GET['blog'] = $blog;
+    $_GET['category'] = $category;
+    require "_dashboard/delete_category.php";
 });
 
 $router->map("GET", "/dashboard/[*:blog]/categories/edit/[i:id]", function ($blog, $id){

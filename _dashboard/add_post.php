@@ -24,7 +24,9 @@
         <div class="row">
             <div class="col-6-12"><h1><?=$edit?"Edit post":"New post"?></h1></div>
             <div class="col-6-12" style="text-align: right">
-                <input type="button" class="red" value="Delete Post" onclick="window.location.href = '/dashboard/<?=Blog::getCurrentBlog()->url?>/posts/add';">
+                <?php if($edit){ ?>
+                    <input type="submit" class="red" value="Delete Post" onclick="window.location.replace('<?=dashboard('posts/delete/' . $post->id)?>');">
+                <?php } ?>
             </div>
         </div>
 
@@ -56,11 +58,11 @@
                             ?>
                         </select>
                     </label>
-                    <div class="row" style="margin-top: 20px;">
-                        <label>Select a cover image :
-                            <input type="file" />
-                        </label>
-                    </div>
+<!--                    <div class="row" style="margin-top: 20px;">-->
+<!--                        <label>Select a cover image :-->
+<!--                            <input type="file" />-->
+<!--                        </label>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="row">

@@ -25,7 +25,7 @@ if(isset($_POST['title']) && isset($_POST['content'])){
         $post->blog = Blog::getCurrentBlog()->id;
         if($post->save()){
 //            echo "<script>window.location.replace('/dashboard/" . Blog::getCurrentBlog()->url . "/posts');</script>";
-            echo "Post saved successfully...";
+            echo "<script>window.location = '" . dashboard("posts") . "';</script>";
         }else{
             echo "Something went wrong. Please try again...";
         }

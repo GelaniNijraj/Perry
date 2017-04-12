@@ -40,3 +40,42 @@ foreach ($query as $q){
     if(isset($t[1]))
         $_GET[$t[0]] = $t[1];
 }
+
+
+function rrmdir($dir) {
+    if (is_dir($dir)) {
+        $objects = scandir($dir);
+        foreach ($objects as $object) {
+            if ($object != "." && $object != "..") {
+                if (is_dir($dir."/".$object))
+                    rrmdir($dir."/".$object);
+                else
+                    unlink($dir."/".$object);
+            }
+        }
+        rmdir($dir);
+    }
+}
+
+
+function rcopy($src, $dst) {
+    $dir = opendir($src);
+    $oldumask = umask(0);
+    mkdir($dst, 0777);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                rcopy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    umask($oldumask);
+    closedir($dir);
+}
+
+function dashboard($path = ""){
+    return "/dashboard/" . Blog::getCurrentBlog()->url . "/" . $path;
+}

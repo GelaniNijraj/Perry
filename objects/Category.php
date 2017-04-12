@@ -14,4 +14,8 @@ class Category extends Base {
     public function getPostsCount(){
         return Capsule::table("post")->where("category", "=", $this->id)->count();
     }
+
+    public static function deleteByBlog($blog){
+        Capsule::table(static::$table)->where("blog", "=", $blog)->delete();
+    }
 }

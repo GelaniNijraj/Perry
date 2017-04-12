@@ -87,7 +87,7 @@ if(isset($_POST['title']) && isset($_POST['description'])){
                     $post->published_on = \Carbon\Carbon::now();
                     if($post->save()){
                         recurse_copy(ROOT . "/themes/default", ROOT . "/blogs/" . $blog->url);
-//                        echo "<script>window.location = '/dashboard/" . $blog->url . "/';</script>";
+                        echo "<script>window.location = '/dashboard/" . $blog->url . "/';</script>";
                     }else{
                         echo "Something went wrong...";
                     }

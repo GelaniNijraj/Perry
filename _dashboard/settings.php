@@ -8,7 +8,7 @@
         function pullThePlug(e) {
             e.preventDefault();
             if(confirm("Are you really sure that you want to delete the blog?")){
-                deleteForm.submit();
+                window.location.replace('<?=dashboard("delete")?>');
             }
         }
     </script>
@@ -20,10 +20,7 @@
         <div class="row">
             <div class="col-6-12"><h1>Settings</h1></div>
             <div class="col-6-12" style="text-align: right">
-                <form id="deleteForm" action="delete" method="post">
-                    <input type="hidden" name="blog_id" value="<?=Blog::getCurrentBlog()->id?>">
-                    <input type="submit" class="red" value="Delete Blog" onclick="pullThePlug(event);">
-                </form>
+                <input type="submit" class="red" value="Delete Blog" onclick="pullThePlug(event);">
             </div>
         </div>
 
@@ -39,12 +36,12 @@
 
             <div class="row">
                 <div class="col-6-12">
-                    <div class="col-6-12">
-                        <span class="error">http://127.0.0.1/blogs/</span>
-                    </div>
-                    <div class="col-6-12">
-                        <input type="text" name="url" placeholder="Blog URL" id="blogUrl" value="<?=$blog->url?>">
-                    </div>
+<!--                    <div class="col-6-12">-->
+<!--                        <span class="error">http://127.0.0.1/blogs/</span>-->
+<!--                    </div>-->
+<!--                    <div class="col-6-12">-->
+<!--                        <input type="text" name="url" placeholder="Blog URL" id="blogUrl" value="--><!--">-->
+<!--                    </div>-->
                 </div>
                 <div class="col-6-12">
                     <input type="text" placeholder="Footer Text" name="footer" value="<?=$blog->footer?>">

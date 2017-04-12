@@ -10,43 +10,9 @@ require ("../includes/common.php");
 use Respect\Validation\Validator as v;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-function rrmdir($dir) {
-    if (is_dir($dir)) {
-        $objects = scandir($dir);
-        foreach ($objects as $object) {
-            if ($object != "." && $object != "..") {
-                if (is_dir($dir."/".$object))
-                    rrmdir($dir."/".$object);
-                else
-                    unlink($dir."/".$object);
-            }
-        }
-        rmdir($dir);
-    }
-}
-
-
-function rcopy($src, $dst) {
-    $dir = opendir($src);
-    $oldumask = umask(0);
-    mkdir($dst, 0777);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file) ) {
-                rcopy($src . '/' . $file,$dst . '/' . $file);
-            }
-            else {
-                copy($src . '/' . $file,$dst . '/' . $file);
-            }
-        }
-    }
-    umask($oldumask);
-    closedir($dir);
-}
-
-
 $title = $_POST['title'];
-$url = $_POST['url'];
+//$url = $_POST['url'];
+$url = "slug";
 $description = $_POST['description'];
 $headline = $_POST['headline'];
 $footer = $_POST['footer'];
@@ -62,6 +28,7 @@ try{
     v::numeric()->setName("Posts per page")->check($posts_per_page);
 
     $blog = Blog::getCurrentBlog();
+    $url = $blog->url;
     if($url != $blog->url && Blog::cexists("url", $url))
         throw new Exception("URL already in use");
     if($blog->theme != $theme){

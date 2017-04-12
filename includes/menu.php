@@ -16,7 +16,7 @@
     <?php }else{ ?>
         <ul>
             <li><a href="<?=ROOT_URL?>/logout.php">Log-Out</a></li>
-            <li><a href="/dashboard/account">Account</a></li>
+<!--            <li><a href="/dashboard/account">Account</a></li>-->
             <li><a href="/dashboard/">All Blogs</a></li>
         </ul>
     <?php } ?>

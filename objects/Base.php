@@ -51,6 +51,10 @@ class Base{
             $this->data[$key] = $value;
     }
 
+    function delete(){
+        Capsule::table(static::$table)->where(static::$primary_key, "=", $this->id)->delete();
+    }
+
     public static function exists($id){
         return Capsule::table(Base::$table)->where(Base::$primary_key, "=", $id)->exists();
     }

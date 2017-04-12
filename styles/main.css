@@ -298,3 +298,12 @@ span.heart {
 footer:hover span.heart{
     color: red;
 }
+
+.hover{
+    background: #F3F3F3;
+    transition: 0.2s;
+}
+
+.hover:hover{
+    background: rgba(0, 0, 0, 0.2);
+}

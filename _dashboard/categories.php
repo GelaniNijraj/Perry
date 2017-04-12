@@ -11,13 +11,7 @@
         }
 
         .category{
-            background: #F3F3F3;
             padding: 10px;
-            transition: 0.2s;
-        }
-
-        .category:hover{
-            background: #cdcdcd;
         }
     </style>
 </head>
@@ -39,7 +33,7 @@
         ?>
             <div class="col-3-12">
                 <a href="categories/edit/<?=$c->id?>" class="delete" style="text-decoration: none">
-                    <div class="category">
+                    <div class="category hover">
                         <h3><?=$c->name?></h3>
                         <p class="post-count"><?=$c->getPostsCount()?> Posts</p>
                     </div>
