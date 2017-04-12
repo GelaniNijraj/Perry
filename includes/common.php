@@ -20,6 +20,12 @@ require (ROOT . "/objects/Comment.php");
 require (ROOT . "/objects/Theme.php");
 
 
+if(str_contains($_SERVER['REQUEST_URI'], "/dashboard/") && !User::isLoggedIn())
+    header("Location: /");
+elseif(str_contains($_SERVER['REQUEST_URI'], "/register") && User::isLoggedIn())
+    header("Location: /dashboard/");
+
+
 $capsule = new Illuminate\Database\Capsule\Manager;
 
 $capsule->addConnection([
@@ -56,7 +62,6 @@ function rrmdir($dir) {
         rmdir($dir);
     }
 }
-
 
 function rcopy($src, $dst) {
     $dir = opendir($src);

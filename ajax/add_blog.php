@@ -9,23 +9,6 @@ require ("../includes/common.php");
 
 use Respect\Validation\Validator as v;
 
-function recurse_copy($src, $dst) {
-    $dir = opendir($src);
-    $oldumask = umask(0);
-    mkdir($dst, 0777);
-    while(false !== ( $file = readdir($dir)) ) {
-        if (( $file != '.' ) && ( $file != '..' )) {
-            if ( is_dir($src . '/' . $file) ) {
-                recurse_copy($src . '/' . $file,$dst . '/' . $file);
-            }
-            else {
-                copy($src . '/' . $file,$dst . '/' . $file);
-            }
-        }
-    }
-    umask($oldumask);
-    closedir($dir);
-}
 
 if(isset($_POST['title']) && isset($_POST['description'])){
     $validator = v::length(1, 255);
@@ -54,7 +37,7 @@ if(isset($_POST['title']) && isset($_POST['description'])){
                     $post->title = "Hello, World!";
                     $post->slug = "hello-world";
                     $post->content = "Perry's default template uses the Github flavoured markdown. Here's a quick cheatsheet of it.
-                    
+
 #### Headings
 
     # Heading 1
@@ -86,8 +69,8 @@ if(isset($_POST['title']) && isset($_POST['description'])){
                     $post->category = $category->id;
                     $post->published_on = \Carbon\Carbon::now();
                     if($post->save()){
-                        recurse_copy(ROOT . "/themes/default", ROOT . "/blogs/" . $blog->url);
-                        echo "<script>window.location = '/dashboard/" . $blog->url . "/';</script>";
+                        rcopy(ROOT . "/themes/default", ROOT . "/blogs/" . $blog->url);
+                        echo "<script>window.location.replace('/dashboard/" . $blog->url . "/');</script>";
                     }else{
                         echo "Something went wrong...";
                     }

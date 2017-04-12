@@ -15,8 +15,8 @@
         function getSlug(str) {
             $.post("/ajax/slug.php", {
                 "name": str
-            }, function (output) {
-                $("#blogUrl").val(output);
+            }, function (op) {
+                $("#blogUrl").val(op);
             });
         }
     </script>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-12-12">
                         <div class="col-6-12">
-                            <span class="error">http://127.0.0.1/blogs/</span>
+                            <span class="error">http://127.0.0.1/</span>
                         </div>
                         <div class="col-6-12">
                             <input type="text" name="url" placeholder="Blog URL" id="blogUrl">
